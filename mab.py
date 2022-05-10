@@ -5,7 +5,6 @@ from abc import (
 import numpy as np
 from collections import defaultdict
 from typing import List
-import random
 
 class Bandit:
     def __init__(self, p: float, id):
@@ -71,7 +70,7 @@ class Agent(ABC):
 
 
 class EpsilonGreedyAgent(Agent):
-    def __init__(self, rewards_log, bandits, epsilon: float = None):
+    def __init__(self, rewards_log, banditas, epsilon: float = None):
         '''
         If epsilon=None it defaults to epsilon = 1 / #actions.
         '''
@@ -79,8 +78,8 @@ class EpsilonGreedyAgent(Agent):
         self.epsilon = epsilon
         if rewards_log:
             self.rewards_log = rewards_log
-        if bandits:
-            self._bandits = bandits
+        if banditas:
+            self.bandits = banditas
 
     def get_random_bandit(self):
         bandit = np.random.choice(self.bandits)

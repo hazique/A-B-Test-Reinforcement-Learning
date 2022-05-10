@@ -74,7 +74,7 @@ else:
     banditas = [Bandit(0.5, x) for x in range(2)]
 
 global agent 
-agent = EpsilonGreedyAgent(rewards_log=reward_log, bandits=banditas)
+agent = EpsilonGreedyAgent(rewards_log=reward_log, banditas=banditas)
 # agent.bandits(banditas)
 
 @app.route("/")
@@ -100,7 +100,6 @@ def register_user():
     sub_id = int(json['sub_id'])
     fname = json['fname']
     lname = json['lname']
-    test_name = json['test_name']
 
     bandits = agent.bandits
     n_bandit_0 = get_record_count_for_variant(bandits[0].id)
@@ -119,14 +118,14 @@ def register_user():
         variant = agent.choose_bandit()
 
     test_done = 0
-
+    test_name = "shopping_cart"
     data = (sub_id, fname, lname, test_name, variant, test_done)
     
     add_subject_to_table(data)
   
     return {
         "sub_id": str(sub_id),
-        "test_name": "shopping_cart",
+        "test_name": test_name,
         "variant": variant
     }
 
